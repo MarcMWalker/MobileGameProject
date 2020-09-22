@@ -44,12 +44,20 @@ void ACameraDirector::Tick(float DeltaTime)
 				OurPlayerController->SetViewTargetWithBlend(CameraThree, SmoothBlendTime);
 			}
 
+			else if (OurPlayerController->IsInputKeyDown(EKeys::W) && CameraThree && (OurPlayerController->GetViewTarget() == CameraThree)) {
+				OurPlayerController->SetViewTargetWithBlend(CameraFive, SmoothBlendTime);
+			}
+
 			else if (OurPlayerController->IsInputKeyDown(EKeys::A) && CameraFour && (OurPlayerController->GetViewTarget() == CameraThree)) {
 				OurPlayerController->SetViewTargetWithBlend(CameraFour, SmoothBlendTime);
 			}
 
 			else if (OurPlayerController->IsInputKeyDown(EKeys::A) && CameraOne &&(OurPlayerController->GetViewTarget() == CameraFour)) {
 				OurPlayerController->SetViewTargetWithBlend(CameraOne, SmoothBlendTime);
+			}
+
+			else if (OurPlayerController->IsInputKeyDown(EKeys::S) && CameraThree && (OurPlayerController->GetViewTarget() == CameraFive)) {
+				OurPlayerController->SetViewTargetWithBlend(CameraThree, SmoothBlendTime);
 			}
 
 			else if (start == true && CameraOne) {
