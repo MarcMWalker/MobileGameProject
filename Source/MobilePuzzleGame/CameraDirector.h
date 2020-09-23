@@ -38,6 +38,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = Cameras)
 	AActor* CameraFive;
 
+	UPROPERTY(EditAnywhere, Category = Cameras)
+	AActor* CameraSix;
+
 	float TimeToNextCameraChange;
 	bool start;
 };

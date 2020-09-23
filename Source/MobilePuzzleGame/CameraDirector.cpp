@@ -22,11 +22,12 @@ void ACameraDirector::BeginPlay()
 // Called every frame
 void ACameraDirector::Tick(float DeltaTime)
 {
+	DeltaTime = 1 / 30.0;
 	Super::Tick(DeltaTime);
 
-	const float TimeBetweenCameraChange = 0.45f;
+	const float TimeBetweenCameraChange = 1.60f;
 	const float SmoothBlendTime = 0.40f;
-	TimeToNextCameraChange -= DeltaTime*4;
+	TimeToNextCameraChange -= DeltaTime;
 
 	if (TimeToNextCameraChange <= 0.0f)
 	{
@@ -40,24 +41,48 @@ void ACameraDirector::Tick(float DeltaTime)
 				OurPlayerController->SetViewTargetWithBlend(CameraTwo, SmoothBlendTime);
 			}
 
+			else if (OurPlayerController->IsInputKeyDown(EKeys::D) && CameraOne && (OurPlayerController->GetViewTarget() == CameraOne)) {
+				OurPlayerController->SetViewTargetWithBlend(CameraFour, SmoothBlendTime);
+			}
+
+			else if (OurPlayerController->IsInputKeyDown(EKeys::D) && CameraTwo && (OurPlayerController->GetViewTarget() == CameraTwo)) {
+				OurPlayerController->SetViewTargetWithBlend(CameraOne, SmoothBlendTime);
+			}
+
 			else if (OurPlayerController->IsInputKeyDown(EKeys::A) && CameraThree && (OurPlayerController->GetViewTarget() == CameraTwo)) {
 				OurPlayerController->SetViewTargetWithBlend(CameraThree, SmoothBlendTime);
+			}
+
+			else if (OurPlayerController->IsInputKeyDown(EKeys::D) && CameraThree && (OurPlayerController->GetViewTarget() == CameraThree)) {
+				OurPlayerController->SetViewTargetWithBlend(CameraTwo, SmoothBlendTime);
 			}
 
 			else if (OurPlayerController->IsInputKeyDown(EKeys::W) && CameraThree && (OurPlayerController->GetViewTarget() == CameraThree)) {
 				OurPlayerController->SetViewTargetWithBlend(CameraFive, SmoothBlendTime);
 			}
 
+			else if (OurPlayerController->IsInputKeyDown(EKeys::S) && CameraFive && (OurPlayerController->GetViewTarget() == CameraFive)) {
+				OurPlayerController->SetViewTargetWithBlend(CameraThree, SmoothBlendTime);
+			}
+
+			else if (OurPlayerController->IsInputKeyDown(EKeys::D) && CameraFour && (OurPlayerController->GetViewTarget() == CameraFour)) {
+				OurPlayerController->SetViewTargetWithBlend(CameraThree, SmoothBlendTime);
+			}
+
 			else if (OurPlayerController->IsInputKeyDown(EKeys::A) && CameraFour && (OurPlayerController->GetViewTarget() == CameraThree)) {
+				OurPlayerController->SetViewTargetWithBlend(CameraFour, SmoothBlendTime);
+			}
+
+			else if (OurPlayerController->IsInputKeyDown(EKeys::W) && CameraFour && (OurPlayerController->GetViewTarget() == CameraFour)) {
+				OurPlayerController->SetViewTargetWithBlend(CameraSix, SmoothBlendTime);
+			}
+
+			else if (OurPlayerController->IsInputKeyDown(EKeys::S) && CameraSix && (OurPlayerController->GetViewTarget() == CameraSix)) {
 				OurPlayerController->SetViewTargetWithBlend(CameraFour, SmoothBlendTime);
 			}
 
 			else if (OurPlayerController->IsInputKeyDown(EKeys::A) && CameraOne &&(OurPlayerController->GetViewTarget() == CameraFour)) {
 				OurPlayerController->SetViewTargetWithBlend(CameraOne, SmoothBlendTime);
-			}
-
-			else if (OurPlayerController->IsInputKeyDown(EKeys::S) && CameraThree && (OurPlayerController->GetViewTarget() == CameraFive)) {
-				OurPlayerController->SetViewTargetWithBlend(CameraThree, SmoothBlendTime);
 			}
 
 			else if (start == true && CameraOne) {
