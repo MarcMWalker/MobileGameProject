@@ -12,9 +12,9 @@
 UCLASS()
 class MOBILEPUZZLEGAME_API AMobilePuzzleGameGameModeBase : public AGameModeBase
 {
-	GENERATED_BODY()
-	
-	
-	
+	GENERATED_BODY ()
+
+public:
+		AMobilePuzzleGameGameModeBase ();
 	
 };
